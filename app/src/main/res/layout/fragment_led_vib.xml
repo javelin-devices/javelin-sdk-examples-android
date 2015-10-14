@@ -1,0 +1,212 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.javelindevices.j1_sdk.PresentationApp.MainActivity$PlaceholderFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="LED and Vibration"
+        android:id="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="LED"
+        android:id="@+id/textView5"
+        android:layout_marginTop="44dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Vibration"
+        android:id="@+id/textView6"
+        android:layout_below="@+id/spinnerLEDType"
+        android:layout_marginTop="73dp"
+        android:layout_alignStart="@+id/seekBarIntensityVib"
+        android:layout_alignEnd="@+id/textView"
+        android:gravity="center_horizontal" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBarIntensityLED"
+        android:layout_alignTop="@+id/textView7"
+        android:layout_alignEnd="@+id/seekBarFrequencyLED"
+        android:layout_toEndOf="@+id/textView8"
+        android:max="100"
+        android:indeterminate="false" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBarFrequencyLED"
+        android:layout_below="@+id/seekBarIntensityLED"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/textView8"
+        android:max="100"
+        android:indeterminate="false" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerLEDType"
+        android:layout_below="@+id/seekBarFrequencyLED"
+        android:layout_alignStart="@+id/textView"
+        android:layout_toStartOf="@+id/toggleButtonLED"
+        android:layout_alignEnd="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Intensity"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Frequency"
+        android:id="@+id/textView8"
+        android:layout_below="@+id/seekBarIntensityLED"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Pulse Type"
+        android:id="@+id/textView9"
+        android:layout_below="@+id/seekBarFrequencyLED"
+        android:layout_toStartOf="@+id/spinnerLEDType" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Intensity"
+        android:id="@+id/textView10"
+        android:layout_alignTop="@+id/textView6"
+        android:layout_alignStart="@+id/textView9"
+        android:layout_marginTop="23dp"
+        android:layout_toStartOf="@+id/seekBarFrequencyLED" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Frequency"
+        android:id="@+id/textView11"
+        android:layout_below="@+id/seekBarIntensityVib"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Pulse Type"
+        android:id="@+id/textView12"
+        android:layout_below="@+id/seekBarFrequencyVib"
+        android:layout_toStartOf="@+id/seekBarFrequencyVib" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBarIntensityVib"
+        android:layout_alignTop="@+id/textView10"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/spinnerLEDType"
+        android:max="100"
+        android:indeterminate="false" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBarFrequencyVib"
+        android:layout_below="@+id/seekBarIntensityVib"
+        android:layout_alignStart="@+id/seekBarIntensityVib"
+        android:max="100"
+        android:layout_alignEnd="@+id/seekBarIntensityVib"
+        android:indeterminate="false" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerVibType"
+        android:layout_below="@+id/seekBarFrequencyVib"
+        android:layout_alignStart="@+id/textView6"
+        android:layout_alignEnd="@+id/textView6" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleButtonLED"
+        android:layout_below="@+id/seekBarFrequencyLED"
+        android:layout_alignParentEnd="true"
+        android:checked="false" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleButtonVib"
+        android:layout_below="@+id/seekBarFrequencyVib"
+        android:layout_alignParentEnd="true"
+        android:checked="false" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:text="255"
+        android:id="@+id/editLedRepeat"
+        android:layout_below="@+id/spinnerLEDType"
+        android:layout_alignStart="@+id/spinnerLEDType"
+        android:layout_alignEnd="@+id/spinnerLEDType" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Repeat Count"
+        android:id="@+id/textView13"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/editLedRepeat" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Repeat Count"
+        android:id="@+id/textView14"
+        android:layout_below="@+id/spinnerVibType"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/textView12" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:text="255"
+        android:id="@+id/editVibRepeat"
+        android:layout_alignBottom="@+id/textView14"
+        android:layout_alignStart="@+id/spinnerVibType"
+        android:layout_alignEnd="@+id/spinnerVibType" />
+
+</RelativeLayout>
