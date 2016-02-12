@@ -116,4 +116,4 @@ In order to display the accelerometer data, we go to the onSensorChanged() metho
 
 ...
 
-You should now be able to run your application on your android device and display accelerometer data in the X,Y, and Z axis and toggle on and off the Vibrator and LED from the Javelin 1. Be sure to download the Tutorial 1.0 code which is ready to run on your device if you are having trouble.
+You should now be able to run your application on your android device and display accelerometer data in the X,Y, and Z axis and toggle on and off the Vibrator and LED from the Javelin 1. Be sure to download the Tutorial 1.0 source code which is ready to run on your device if you are having trouble.
