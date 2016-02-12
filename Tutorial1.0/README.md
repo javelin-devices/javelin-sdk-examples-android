@@ -93,7 +93,7 @@ After making the ToggleButton's clickable, we specify what happens when each Tog
             }
         });
 
-In order to display the accelerometer data we go to the onSensorChanged() method where each specific sensor event, in this case the accelerometer, is detected and a switch case statement is used to specify what happens to do the raw data from the sensor. The length and contents of the values array depends on which sensor was returned. For the accelerometer, the values[] array length is 9 which stores 3 data values for each axis in the array. This data can then be displayed in the TextViews with the setText() method. 
+In order to display the accelerometer data, we go to the onSensorChanged() method where each specific sensor event, in this case the accelerometer, is detected and a switch case statement is used to specify what happens to do the raw data from the sensor. The length and contents of the values array depends on which sensor was returned. For the accelerometer, the values[] array length is 9 which stores 3 data values for each axis in the array. This data can then be displayed in the TextViews with the setText() method. 
 
     public void onSensorChanged(JavelinSensorEvent event) {
         float[] values = event.values;
