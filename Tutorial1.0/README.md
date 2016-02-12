@@ -4,7 +4,7 @@ This tutorial covers toggling buttons for the LED and Vibrator as well as displa
 ## Layout 
 Let's begin by creating the buttons and display for the raw accelerometer data in the activity_main.xml file in the layout folder. There are two tabs under the activity_main.xml file called "Design" and "Text". The Design tab allows you to drag and drop buttons and specify other features onto an emulated screen similar to what will be shown on your phone whereas the Text tab shows the actual XML code that is being generated from the Design tab. In this tutorial, we are using the RelativeLayout which enables you to specify how child views are positioned relative to each other. The position of each view can be specified as relative to sibling elements or relative to the parent. Inside the RelativeLayout we have two toggle buttons used for turning the LED and Vibrator on and off. The XML code is shown below:
 
-<ToggleButton
+    <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Vibrator"
