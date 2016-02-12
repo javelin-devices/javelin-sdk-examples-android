@@ -73,9 +73,47 @@ In the OnCreate() method, we reference the variables to the ToggleButton and Tex
     yText = (TextView)findViewById(R.id.y_acc);
     zText = (TextView)findViewById(R.id.z_acc);
     
+After making the ToggleButton's clickable, we specify what happens when each ToggleButton is clicked. In this case, want to turn on the Vibrator and LED. We do this by specifying the vibration and blink type to solid and enabling each feature. 
 
+    vibrator.setClickable(true);
+        vibrator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSensorManager.setVibrationType(JavelinSettings.VIB_TYPE_SOLID);
+                mSensorManager.vibrationEnable(vibrator.isChecked());
+            }
+        });
+        
+    led_button.setClickable(true);
+        led_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSensorManager.setLedBlinkType(JavelinSettings.LED_TYPE_SOLID);
+                mSensorManager.ledEnable(led_button.isChecked());
+            }
+        });
 
+In order to display the accelerometer data we go to the onSensorChanged() method where each specific sensor event, in this case the accelerometer, is detected and a switch case statement is used to specify what happens to do the raw data from the sensor. The length and contents of the values array depends on which sensor was returned. For the accelerometer, the values[] array length is 9 which stores 3 data values for each axis in the array. This data can then be displayed in the TextViews with the setText() method. 
 
+    public void onSensorChanged(JavelinSensorEvent event) {
+        float[] values = event.values;
+        switch (event.sensor) {
+            case ISensor.TYPE_ACCELEROMETER: //1
+                //handle accelerometer data here
+                float x = values[0]; // Do something with it
+                float y = values[1]; // Do something with it
+                float z = values[2]; // Do something with it
+                xText.setText("X: " + event.values[0]/2 + " g");
+                xText.setText("X: " + event.values[3]/2 + " g");
+                xText.setText("X: " + event.values[6]/2 + " g");
+                yText.setText("Y: " + event.values[1]/2 + " g");
+                yText.setText("Y: " + event.values[4]/2 + " g");
+                yText.setText("Y: " + event.values[7]/2 + " g");
+                zText.setText("Z: " + event.values[2]/2 + " g");
+                zText.setText("Z: " + event.values[5]/2 + " g");
+                zText.setText("Z: " + event.values[8]/2 + " g");
+                break;
 
+...
 
-
+You should now be able to run your application on your android device and display accelerometer data in the X,Y, and Z axis and toggle on and off the Vibrator and LED from the Javelin 1. Be sure to download the Tutorial 1.0 code which is ready to run on your device if you are having trouble.
