@@ -10,7 +10,7 @@ Visit the [Starter Code Repository](https://github.com/javelin-devices/javelin-s
 If you want to learn more about how the Javelin Starter Code is made you can [get started in our Javelin SDK Repository](https://github.com/javelin-devices/javelin-sdk-android).
 
 
-## Javelin Tutorial 1.0
+## Javelin Tutorial 1.0 for Android
 This tutorial covers toggling buttons for the LED and Vibrator as well as displaying the raw data from the X, Y, and Z components of the accelerometer. The tutorial is built off of the Javelin [Starter Code](https://github.com/javelin-devices/javelin-starter-code).
 
 ## Layout 
