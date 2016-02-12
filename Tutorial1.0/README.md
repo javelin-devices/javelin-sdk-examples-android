@@ -59,3 +59,4 @@ Let's begin by creating the buttons and display for the raw accelerometer data i
         android:layout_alignParentStart="true" />
 
 ## MainActivity
+After the Layout has been finished we need to specify what actually happens when the buttons are clicked or what data shows up in the TextView's. This will be done in the java file MainActivity under the java folder in the project. 
