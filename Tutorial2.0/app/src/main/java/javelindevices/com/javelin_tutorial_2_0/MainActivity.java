@@ -14,6 +14,8 @@ import com.javelindevices.javelinsdk.model.ISensorManager;
 import com.javelindevices.javelinsdk.model.JavelinSensorEvent;
 import com.javelindevices.javelinsdk.model.JavelinSettings;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 
@@ -27,9 +29,8 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<JavelinSensorManager> mSensorManagers = new ArrayList<JavelinSensorManager>();
     public static ArrayList<JavelinDeviceAdapter> mDeviceAdapters = new ArrayList<JavelinDeviceAdapter>();
 
-    private ToggleButton vibrator;
-    private ToggleButton led_button;
-    private TextView xText,yText,zText;
+    private ToggleButton vibrator1, vibrator2, vibrator3, led_button1, led_button2, led_button3;
+    private TextView xText1,yText1,zText1,xText2,yText2,zText2,xText3,yText3,zText3;
 
 
     @Override
@@ -55,45 +56,96 @@ public class MainActivity extends AppCompatActivity {
 
         /*** Assign Buttons ***/
 
-        vibrator = (ToggleButton)findViewById(R.id.vibrator_toggle);
-        vibrator.setClickable(true);
-        vibrator.setOnClickListener(new View.OnClickListener() {
+        vibrator1 = (ToggleButton)findViewById(R.id.vibrator_toggle1);
+        vibrator1.setClickable(true);
+        vibrator1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(int i=0;i< mSensorManagers.size();i++){
-                    mSensorManagers.get(i).vibrationEnable(vibrator.isChecked());
+                    mSensorManagers.get(0).vibrationEnable(vibrator1.isChecked());
+            }
+        });
+
+        vibrator2 = (ToggleButton)findViewById(R.id.vibrator_toggle2);
+        vibrator2.setClickable(true);
+        vibrator2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mSensorManagers.size()>=2){
+                    mSensorManagers.get(1).vibrationEnable(vibrator2.isChecked());
                 }
             }
         });
 
-        led_button = (ToggleButton)findViewById(R.id.led_toggle);
-        led_button.setClickable(true);
-        led_button.setOnClickListener(new View.OnClickListener() {
+        vibrator3 = (ToggleButton)findViewById(R.id.vibrator_toggle3);
+        vibrator3.setClickable(true);
+        vibrator3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(int i=0;i< mSensorManagers.size();i++){
+                if(mSensorManagers.size()>=3){
+                    for(int i=2;i< mSensorManagers.size();i++){
+                        mSensorManagers.get(i).vibrationEnable(vibrator3.isChecked());
+                    }
+                }
+            }
+        });
+
+
+        led_button1 = (ToggleButton)findViewById(R.id.led_toggle1);
+        led_button1.setClickable(true);
+        led_button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    mSensorManagers.get(0).setLedBlinkType(JavelinSettings.LED_TYPE_SOLID);
+                    mSensorManagers.get(0).ledEnable(led_button1.isChecked());
+            }
+        });
+
+        led_button2 = (ToggleButton)findViewById(R.id.led_toggle2);
+        led_button2.setClickable(true);
+        led_button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mSensorManagers.size()>=2){
+                    mSensorManagers.get(1).setLedBlinkType(JavelinSettings.LED_TYPE_SOLID);
+                    mSensorManagers.get(1).ledEnable(led_button2.isChecked());
+                }
+            }
+        });
+
+        led_button3 = (ToggleButton)findViewById(R.id.led_toggle3);
+        led_button3.setClickable(true);
+        led_button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mSensorManagers.size()>=3)
+                for(int i=2;i< mSensorManagers.size();i++){
                     mSensorManagers.get(i).setLedBlinkType(JavelinSettings.LED_TYPE_SOLID);
-                    mSensorManagers.get(i).ledEnable(led_button.isChecked());
+                    mSensorManagers.get(i).ledEnable(led_button3.isChecked());
                 }
             }
         });
 
         /*** Assign TextView ***/
-        xText = (TextView)findViewById(R.id.x_acc);
-        yText = (TextView)findViewById(R.id.y_acc);
-        zText = (TextView)findViewById(R.id.z_acc);
+        xText1 = (TextView)findViewById(R.id.x_acc1);
+        yText1 = (TextView)findViewById(R.id.y_acc1);
+        zText1 = (TextView)findViewById(R.id.z_acc1);
+
+        xText2 = (TextView)findViewById(R.id.x_acc2);
+        yText2 = (TextView)findViewById(R.id.y_acc2);
+        zText2 = (TextView)findViewById(R.id.z_acc2);
+
+        xText3 = (TextView)findViewById(R.id.x_acc3);
+        yText3 = (TextView)findViewById(R.id.y_acc3);
+        zText3 = (TextView)findViewById(R.id.z_acc3);
     }
 
 
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        //** Register Listener for each Javelin Service **//
-        for(int i=0;i< mSensorManagers.size();i++){
-            mSensorManagers.get(i).registerListener(mDeviceAdapters.get(i), ISensor.TYPE_ACCELEROMETER);
-        }
-    }
+    // @Override
+    // public void onResume(){
+    //     super.onResume();
+        
+    // }
 
     @Override
     public void onPause(){
@@ -126,15 +178,23 @@ public class MainActivity extends AppCompatActivity {
         /***
          * JavelinEventListener Methods
          ***/
+        int connectedCount = 0;
         @Override
         public void onSensorManagerConnected() {
             // for(int i=0;i< mSensorManagers.size();i++){
-            int i = mDeviceAddresses.indexOf(deviceAddress);
+            connectedCount++;
+            if(connectedCount==mSensorManagers.size()){
+                //** Register Listener for each Javelin Service **//
+                for(int i=0;i< mSensorManagers.size();i++){
+                    mSensorManagers.get(i).setLedBlinkNumber(5);
+                    mSensorManagers.get(i).setLedBlinkRate(75);
+                    mSensorManagers.get(i).setLedIntensity(75);
+                    mSensorManagers.get(i).ledEnable(true);
+                    mSensorManagers.get(i).registerListener(mDeviceAdapters.get(i), ISensor.TYPE_ACCELEROMETER);
+                }
+                connectedCount = 0;
+            }
             Log.v(TAG, "Successfully connected to Javelin: " + deviceAddress);
-            mSensorManagers.get(i).setLedBlinkNumber(5);
-            mSensorManagers.get(i).setLedBlinkRate(75);
-            mSensorManagers.get(i).setLedIntensity(75);
-            mSensorManagers.get(i).ledEnable(true);
             // }
         }
 
@@ -152,25 +212,36 @@ public class MainActivity extends AppCompatActivity {
 
             float[] values = event.values;
             //Log.v(TAG, "Sensor changed.\nSensor: " + event.sensor + "\nValues: " + values.length + "\nValue: " + values[0] +" "+ values[3]+ " "+ values[6]);
-            int i = mDeviceAddresses.indexOf(deviceAddress);
             switch (event.sensor) {
                 case ISensor.TYPE_ACCELEROMETER: //1
                     //handle accelerometer data here
                     float x = values[0]; // Do something with it
                     float y = values[1]; // Do something with it
                     float z = values[2]; // Do something with it
-                    if(i==0)
-                        xText.setText("X: " + event.values[0]/2 + " g");
-                    else if(i==1){
-                        yText.setText("Y: " + event.values[1]/2 + " g");
-                        zText.setText("Z: " + event.values[2]/2 + " g");
+                    
+                    NumberFormat df = DecimalFormat.getInstance();
+                    df.setMaximumFractionDigits(3);
+                    df.setMinimumFractionDigits(3);
+                    
+                    int i = mDeviceAddresses.indexOf(event.deviceAddress);
+
+                    if(i==0) {
+                        xText1.setText("X: " + df.format(event.values[0]) + " g");
+                        yText1.setText("Y: " + df.format(event.values[1]) + " g");
+                        zText1.setText("Z: " + df.format(event.values[2]) + " g");
                     }
-    //                xText.setText("X: " + event.values[3]/2 + " g");
-    //                xText.setText("X: " + event.values[6]/2 + " g");
-    //                yText.setText("Y: " + event.values[4]/2 + " g");
-    //                yText.setText("Y: " + event.values[7]/2 + " g");
-    //                zText.setText("Z: " + event.values[5]/2 + " g");
-    //                zText.setText("Z: " + event.values[8]/2 + " g");
+                    else if(i==1){
+                        xText2.setText("X: " + df.format(event.values[0]) + " g");
+                        yText2.setText("Y: " + df.format(event.values[1]) + " g");
+                        zText2.setText("Z: " + df.format(event.values[2]) + " g");
+                    }
+                    else if(i==2)
+                    {
+                        xText3.setText("X: " + df.format(event.values[0]) + " g");
+                        yText3.setText("Y: " + df.format(event.values[1]) + " g");
+                        zText3.setText("Z: " + df.format(event.values[2]) + " g");
+                    }
+
                     break;
     //            case ISensor.TYPE_MAGNETIC_FIELD: //2
     //                magneticFieldData.parseStream(values);
