@@ -1,7 +1,7 @@
 ## Resources
 You can access the [API javadocs here](http://www.javelindevices.com/javelin_docs/index.html).
 
-**You must download and install** the [JavelinServiceApp](https://github.com/javelin-dev/javelin-sdk-examples/releases/download/v1.0/JavelinService.apk) application on your android device.
+**You must download and install** the [JavelinServiceApp](https://github.com/javelin-devices/javelin-sdk-examples-android/releases/download/v1.1/JavelinService1.1.apk) application on your android device.
 This application manages connections between any clients (other apps) wanting to use the
 Javelin device at the same time. Your android device must be Bluetooth Low Energy compatible.
 
@@ -115,15 +115,15 @@ In order to display the accelerometer data, we go to the onSensorChanged() metho
                 float x = values[0]; // Do something with it
                 float y = values[1]; // Do something with it
                 float z = values[2]; // Do something with it
-                xText.setText("X: " + event.values[0]/2 + " g");
-                xText.setText("X: " + event.values[3]/2 + " g");
-                xText.setText("X: " + event.values[6]/2 + " g");
-                yText.setText("Y: " + event.values[1]/2 + " g");
-                yText.setText("Y: " + event.values[4]/2 + " g");
-                yText.setText("Y: " + event.values[7]/2 + " g");
-                zText.setText("Z: " + event.values[2]/2 + " g");
-                zText.setText("Z: " + event.values[5]/2 + " g");
-                zText.setText("Z: " + event.values[8]/2 + " g");
+                xText.setText(String.format("X:  %.4f g ", event.values[0]));
+                xText.setText(String.format("X:  %.4f g ", event.values[3]));
+                xText.setText(String.format("X:  %.4f g ", event.values[6]));
+                yText.setText(String.format("Y:  %.4f g ", event.values[1]));
+                yText.setText(String.format("Y:  %.4f g ", event.values[4]));
+                yText.setText(String.format("Y:  %.4f g ", event.values[7]));
+                zText.setText(String.format("Z:  %.4f g ", event.values[2]));
+                zText.setText(String.format("Z:  %.4f g ", event.values[5]));
+                zText.setText(String.format("Z:  %.4f g ", event.values[8]));
                 break;
 
 ...
