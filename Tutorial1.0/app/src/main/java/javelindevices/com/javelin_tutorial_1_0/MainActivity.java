@@ -82,6 +82,11 @@ public class MainActivity extends AppCompatActivity implements ISensorManager.Ja
         mSensorManager.setLedBlinkRate(75);
         mSensorManager.setLedIntensity(75);
         mSensorManager.ledEnable(true);
+
+        mSensorManager.setAccelerometerFullScaleRange(4);
+
+
+
     }
 
     @Override
@@ -104,15 +109,16 @@ public class MainActivity extends AppCompatActivity implements ISensorManager.Ja
                 float x = values[0]; // Do something with it
                 float y = values[1]; // Do something with it
                 float z = values[2]; // Do something with it
-                xText.setText("X: " + event.values[0]/2 + " g");
-                xText.setText("X: " + event.values[3]/2 + " g");
-                xText.setText("X: " + event.values[6]/2 + " g");
-                yText.setText("Y: " + event.values[1]/2 + " g");
-                yText.setText("Y: " + event.values[4]/2 + " g");
-                yText.setText("Y: " + event.values[7]/2 + " g");
-                zText.setText("Z: " + event.values[2]/2 + " g");
-                zText.setText("Z: " + event.values[5]/2 + " g");
-                zText.setText("Z: " + event.values[8]/2 + " g");
+                xText.setText(String.format("X:  %.4f g ", event.values[0]));
+                xText.setText(String.format("X:  %.4f g ", event.values[3]));
+                xText.setText(String.format("X:  %.4f g ", event.values[6]));
+                yText.setText(String.format("Y:  %.4f g ", event.values[1]));
+                yText.setText(String.format("Y:  %.4f g ", event.values[4]));
+                yText.setText(String.format("Y:  %.4f g ", event.values[7]));
+                zText.setText(String.format("Z:  %.4f g ", event.values[2]));
+                zText.setText(String.format("Z:  %.4f g ", event.values[5]));
+                zText.setText(String.format("Z:  %.4f g ", event.values[8]));
+
                 break;
 //            case ISensor.TYPE_MAGNETIC_FIELD: //2
 //                magneticFieldData.parseStream(values);

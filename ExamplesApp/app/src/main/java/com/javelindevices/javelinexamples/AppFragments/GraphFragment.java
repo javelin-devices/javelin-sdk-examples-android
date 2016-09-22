@@ -162,6 +162,7 @@ public class GraphFragment extends ScreenSlidePageFragment implements
                 mSensorManager.unregisterAll();
                 mSensorManager.registerListener(this, ISensor.TYPE_ACCELEROMETER);
                 sensorSelected = ISensor.TYPE_ACCELEROMETER;
+
                 break;
             }
             case 1: {
@@ -304,6 +305,8 @@ public class GraphFragment extends ScreenSlidePageFragment implements
 
     @Override
     public void onSensorManagerConnected() {
+        mSensorManager.setAccelerometerFullScaleRange(4);
+
     }
 
     @Override

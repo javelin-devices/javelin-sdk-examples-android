@@ -16,7 +16,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_name">Javelin Examples</string>
+    <string name="app_name">JDevExamples</string>
     <string name="navigation_drawer_open">opened</string>
     <string name="navigation_drawer_close">closed</string>
     <string name="ble_not_supported">BLE is not supported</string>
