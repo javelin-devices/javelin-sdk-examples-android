@@ -1,5 +1,7 @@
 package javelindevices.com.javelin_tutorial_3_0;
 
+import android.bluetooth.le.ScanFilter;
+import android.bluetooth.le.ScanSettings;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -32,16 +34,19 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ScanActivity extends AppCompatActivity {
 
     private BluetoothAdapter mBluetoothAdapter;
     private boolean mScanning;
     private Handler mHandler;
+    List<ScanFilter> filters = new ArrayList<ScanFilter>();
+    private ScanSettings scanSettings;
 
     private static final int REQUEST_ENABLE_BT = 1;
     // Stops scanning after 5 seconds.
-    private static final long SCAN_PERIOD = 5000;
+    private static final long SCAN_PERIOD = 10000;
     private Context context;
     // Stores connection strength of each BLE device
     private HashMap<BluetoothDevice, Integer> rssiMap = new HashMap<BluetoothDevice, Integer>();
@@ -165,6 +170,13 @@ public class ScanActivity extends AppCompatActivity {
     }
 
     private void scanLeDevice(final boolean enable) {
+
+        //Select BLE Scan_Mode
+
+        ScanSettings.Builder scanSettingsBuilder = new ScanSettings.Builder();
+        scanSettingsBuilder.setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY);
+        scanSettings = scanSettingsBuilder.build();
+
         if (enable) {
             // Stops scanning after a pre-defined scan period.
             mHandler.postDelayed(new Runnable() {
@@ -177,7 +189,7 @@ public class ScanActivity extends AppCompatActivity {
             mScanning = true;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 scanner = mBluetoothAdapter.getBluetoothLeScanner();
-                scanner.startScan(newCallback);
+                scanner.startScan(filters,scanSettings,newCallback);
             } else {
                 mBluetoothAdapter.startLeScan(mLeScanCallback);
             }
@@ -228,9 +240,11 @@ public class ScanActivity extends AppCompatActivity {
             menu.findItem(R.id.menu_stop).setVisible(false);
             menu.findItem(R.id.menu_scan).setVisible(true);
             menu.findItem(R.id.menu_refresh).setActionView(null);
+            menu.findItem(R.id.menu_refresh).setVisible(false);
         } else {
             menu.findItem(R.id.menu_stop).setVisible(true);
             menu.findItem(R.id.menu_scan).setVisible(false);
+            menu.findItem(R.id.menu_refresh).setVisible(true);
             menu.findItem(R.id.menu_refresh).setActionView(
                     R.layout.actionbar_indeterminate_progress);
         }

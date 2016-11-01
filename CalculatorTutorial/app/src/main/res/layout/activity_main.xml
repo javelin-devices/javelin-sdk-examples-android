@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="javelindevices.com.javelin_tutorial_1_0.MainActivity"
+    android:clickable="false">
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vibrator"
+        android:id="@+id/vibrator_toggle"
+        android:enabled="true"
+        android:textOff="Vibrator: Off"
+        android:textOn="Vibrator: On"
+        android:checked="false"
+        android:clickable="true" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LED"
+        android:id="@+id/led_toggle"
+        android:clickable="true"
+        android:enabled="true"
+        android:layout_below="@+id/vibrator_toggle"
+        android:layout_alignParentStart="true"
+        android:textOff="LED: Off"
+        android:textOn="LED: On" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/x_acc"
+        android:layout_below="@+id/led_toggle"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="41dp"
+        android:text="X:"
+        android:enabled="true"
+        android:editable="false" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/y_acc"
+        android:layout_below="@+id/x_acc"
+        android:layout_alignEnd="@+id/x_acc"
+        android:enabled="true"
+        android:text="Y:" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/z_acc"
+        android:enabled="true"
+        android:text="Z:"
+        android:layout_below="@+id/y_acc"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Text: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/z_acc"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="17dp"
+        android:id="@+id/hello" />
+
+    <TextView
+        android:text="Add Numbers:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numAdd"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/hello"
+        android:layout_alignStart="@+id/y_acc" />
+
+    <TextView
+        android:text="Sum = "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/totSum"
+        android:layout_alignStart="@+id/numAdd"
+        android:layout_below="@+id/Num2" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/Num1"
+        android:editable="true"
+        android:singleLine="true"
+        android:text="0"
+        android:layout_alignBaseline="@+id/numAdd"
+        android:layout_alignBottom="@+id/numAdd"
+        android:layout_toEndOf="@+id/numAdd"
+        android:layout_marginStart="13dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/Num2"
+        android:editable="true"
+        android:singleLine="true"
+        android:text="0"
+        android:layout_below="@+id/numAdd"
+        android:layout_alignStart="@+id/Num1" />
+
+</RelativeLayout>

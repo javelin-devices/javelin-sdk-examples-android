@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 import javelindevices.com.javelin_tutorial_3_0.DataProcessing.Sensor1DData;
 import javelindevices.com.javelin_tutorial_3_0.DataProcessing.Sensor3DData;
+import javelindevices.com.javelin_tutorial_3_0.DataProcessing.SignalProcessing1DData;
 import javelindevices.com.javelin_tutorial_3_0.DataProcessing.SignalProcessing3DData;
 
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements ISensorManager.Ja
     Sensor1DData audioEnergyData;
     Sensor1DData batteryData;
     SignalProcessing3DData processedaccelerometerData;
-
+    SignalProcessing1DData maxaccelerometerData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements ISensorManager.Ja
         vibrator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mSensorManager.setVibrationType(JavelinSettings.VIB_TYPE_SOLID);
                 mSensorManager.vibrationEnable(vibrator.isChecked());
             }
         });
@@ -122,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements ISensorManager.Ja
         mSensorManager.vibrationEnable(true);
 
 
+
         mSensorManager.setAccelerometerFullScaleRange(4);
 
 
@@ -152,7 +155,9 @@ public class MainActivity extends AppCompatActivity implements ISensorManager.Ja
             case ISensor.TYPE_ACCELEROMETER:
                 //accelerometerData.parseStream(values);
                 processedaccelerometerData.parseStream(values);
-                max_accText.setText((String.format("Max Acceleration:  %.4f g ", processedaccelerometerData.MovingAvgFilt(10, processedaccelerometerData.Mag3D(values)))));
+                max_accText.setText(String.format("Max Acceleration:  %.4f g ", processedaccelerometerData.Max3D(processedaccelerometerData.Mag3D(processedaccelerometerData.MovingAvgFilt3D(20, values)))));
+
+                //max_accText.setText(String.format("Max Acceleration:  %.4f g ", processedaccelerometerData.MovingAvgFilt3D(10, values)));
                 //processedaccelerometerData.MovingAvgFilt(10, processedaccelerometerData.Mag3D(values));
 //                xText.setText("X: " + event.values[0] + " g");
 //                xText.setText("X: " + event.values[3] + " g");
